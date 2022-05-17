@@ -17,13 +17,11 @@ export default function App() {
         })
     }, []);
 
-    console.log(items)
-
     return (
         <BrowserRouter>
             <Head />
             <Routes>
-                <Route path="/" element={<Movie />} />
+                <Route path="/" element={<Movie items={items}/>} />
             </Routes>
         </BrowserRouter>
     )

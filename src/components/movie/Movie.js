@@ -1,19 +1,36 @@
 import "./style.css"
 import Subtitle from "../../shared/subtitle/Subtitle"
 import React from "react"
-import axios from "axios"
+import Loader from "../../shared/loader/Loader"
 
 
-export default function Movie () {
+export default function Movie ({
+    items
+}) {
     return (
         <>
             <Subtitle>
                 <h2>Selecione o filme</h2>
             </Subtitle>
+            <Movies items={items}/>
         </>
     )
 }
 
-function Movies () {
-    
+function Movies ({
+    items
+}) {
+    console.log(items)
+    if (items.length === 0) {
+        console.log("passei aq")
+
+        return <Loader />
+    } else {
+        return (
+            items.map((item, index) => {
+                return <img key={index} src={item.posterURL} alt="" />
+            })
+        )
+    }
+   
 }
