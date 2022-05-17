@@ -1,5 +1,9 @@
+import "./style.css"
+
 export default function Head() {
     return (
-        <p>head bolado</p>
+        <header>
+            <h1>CINEFLEX</h1>
+        </header>
     )
 }
