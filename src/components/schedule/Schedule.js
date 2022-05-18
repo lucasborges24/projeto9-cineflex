@@ -66,7 +66,9 @@ function Day({
 }) {
     return (
         <div className="horario">
-            <h3>{days.weekday} - {days.date}</h3>
+            <h3>
+                {days.weekday} - {days.date}
+            </h3>
             <div className="hours">
                 {days.showtimes.map((time, index) => <Hour hours={time} key={index} />)}
             </div>
