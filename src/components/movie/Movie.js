@@ -2,6 +2,7 @@ import "./style.css"
 import Subtitle from "../../shared/subtitle/Subtitle"
 import React from "react"
 import Loader from "../../shared/loader/Loader"
+import { Link } from "react-router-dom"
 
 
 export default function Movie ({
@@ -27,7 +28,7 @@ function Movies ({
         return (
             <div className="poster-img">
                 {items.map((item, index) => {
-                    return <img key={index} src={item.posterURL} alt="poster-movie" />
+                    return <Link to={`/filme/${item.id}`}><img key={index} src={item.posterURL} alt="poster-movie" /></Link>
                 })}
             </div>
         )
