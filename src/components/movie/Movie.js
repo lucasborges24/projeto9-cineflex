@@ -22,8 +22,6 @@ function Movies ({
 }) {
     console.log(items)
     if (items.length === 0) {
-        console.log("passei aq")
-
         return <Loader />
     } else {
         return (
