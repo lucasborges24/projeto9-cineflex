@@ -25,10 +25,12 @@ function Movies ({
         return <Loader />
     } else {
         return (
-            items.map((item, index) => {
-                return <img key={index} src={item.posterURL} alt="" />
-            })
+            <div className="poster-img">
+                {items.map((item, index) => {
+                    return <img key={index} src={item.posterURL} alt="poster-movie" />
+                })}
+            </div>
         )
     }
-   
 }
+
