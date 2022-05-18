@@ -22,7 +22,13 @@ export default function Schedule({
         })
     }, []);
     if (dadosFilme.length === 0) {
-        return <Loader />
+        return <>
+            <Subtitle>
+                <h2>Selecione o horário</h2>
+            </Subtitle>
+            <Loader />
+        </>
+
     }
     return (
         <>
