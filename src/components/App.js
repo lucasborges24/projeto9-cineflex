@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import GlobalStyle from "./GlobalStyle"
 import Movie from "./movie/Movie"
 import Schedule from "./schedule/Schedule"
 import Head from "./Head/Head"
@@ -20,6 +21,7 @@ export default function App() {
 
     return (
         <BrowserRouter>
+            <GlobalStyle />
             <Head />
             <Routes>
                 <Route path="/" element={<Movie items={items}/>} />

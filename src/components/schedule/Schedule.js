@@ -1,9 +1,9 @@
+import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
 import Subtitle from '../../shared/subtitle/Subtitle'
 import Loader from '../../shared/loader/Loader'
 import React from 'react'
 import axios from 'axios'
-import "./style.css"
 import Footer from '../../shared/footer/Footer'
 
 
@@ -53,11 +53,11 @@ function Days({
     console.log(days)
 
     return (
-        <div className='horarios'>
+        <Horarios>
             {days.map((day, index) => {
                 return <Day days={day} key={index} />
             })}
-        </div>
+        </Horarios>
     )
 }
 
@@ -69,9 +69,9 @@ function Day({
             <h3>
                 {days.weekday} - {days.date}
             </h3>
-            <div className="hours">
+            <Hours>
                 {days.showtimes.map((time, index) => <Hour hours={time} key={index} />)}
-            </div>
+            </Hours>
         </div>
     )
 }
@@ -80,9 +80,48 @@ function Hour({
     hours,
 }) {
     return (
-        <div className="hour">
+        <Hourinha>
             <p>{hours.name}</p>
-        </div>
+        </Hourinha>
     )
 }
+
+const Horarios = styled.div`
+    margin-left: 24px;
+    margin-top: 40px;
+    margin-bottom: 137px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+
+    h3 { 
+        font-size: 20px;
+        line-height: 23px;
+        color: #293845;
+    }
+
+    p { 
+        font-size: 18px;
+        line-height: 21px;
+        color: #FFFFFF;
+    }
+`
+
+const Hours = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 22px 0;
+`
+
+const Hourinha = styled.div`
+    width: 83px;
+    height: 43px;
+    background-color: #E8833A;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    cursor: pointer;
+`
 
