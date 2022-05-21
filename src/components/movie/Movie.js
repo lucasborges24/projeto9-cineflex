@@ -21,7 +21,6 @@ export default function Movie ({
 function Movies ({
     items
 }) {
-    console.log(items)
     if (items.length === 0) {
         return <Loader />
     } else {

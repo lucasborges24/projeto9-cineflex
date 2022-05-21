@@ -5,14 +5,16 @@ import Loader from '../../shared/loader/Loader'
 import React from 'react'
 import axios from 'axios'
 import Footer from '../../shared/footer/Footer'
+import { Link } from 'react-router-dom'
 
 
 
 export default function Schedule({
-    items
+    setDadosFilme,
+    dadosFilme
 }) {
     const { filmeId } = useParams()
-    const [dadosFilme, setDadosFilme] = React.useState([])
+    // const [dadosFilme, setDadosFilme] = React.useState([])
 
     React.useEffect(() => {
         const request = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${filmeId}/showtimes`);
@@ -30,6 +32,7 @@ export default function Schedule({
         </>
 
     }
+
     return (
         <>
             <Subtitle>
@@ -47,11 +50,8 @@ export default function Schedule({
 }
 
 function Days({
-    days
+    days,
 }) {
-
-    console.log(days)
-
     return (
         <Horarios>
             {days.map((day, index) => {
@@ -79,10 +79,16 @@ function Day({
 function Hour({
     hours,
 }) {
+    console.log(hours)
     return (
+
         <Hourinha>
-            <p>{hours.name}</p>
-        </Hourinha>
+            <Link to={`/sessao/${hours.id}`} >
+                <p>{hours.name}</p>
+            </Link>
+        </Hourinha >
+
+
     )
 }
 
@@ -123,5 +129,9 @@ const Hourinha = styled.div`
     justify-content: center;
     margin-right: 20px;
     cursor: pointer;
+    
+    a {
+        text-decoration: none;
+    }
 `
 
