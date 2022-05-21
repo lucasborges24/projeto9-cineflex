@@ -94,7 +94,7 @@ const Chair = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 10px 10px 0;
+    margin: 0 5px 10px 5px;
 
     p {
         font-family: 'Roboto';
