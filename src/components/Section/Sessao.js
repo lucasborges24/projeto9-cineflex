@@ -81,6 +81,7 @@ const Seats = styled.div`
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     width: 375px;
     margin: 20px auto;
 `
