@@ -6,6 +6,7 @@ import React from 'react'
 import axios from 'axios'
 import Footer from '../../shared/footer/Footer'
 import { Link } from 'react-router-dom'
+import FormsUser from '../forms/FormsUser'
 
 
 export default function Sessao({
@@ -38,6 +39,7 @@ export default function Sessao({
                 <h2>Selecione o(s) assentos </h2>
             </Subtitle>
             <Section seats={dadosSessao.seats} />
+            <FormsUser />
             <Footer>
                 <div className="background-image">
                     <img src={dadosfilme.posterURL} alt="" />
@@ -69,6 +71,20 @@ function Section({
                     selecionados={selecionados}
                 />
             })}
+            <Classification>
+                <div className="position">
+                    <div className="bolotinha green"></div>
+                    <p>Selecionado</p>
+                </div>
+                <div className="position">
+                    <div className="bolotinha gray"></div>
+                    <p>Disponível</p>
+                </div>
+                <div className="position">
+                    <div className="bolotinha yellow"></div>
+                    <p>Indisponível</p>
+                </div>
+            </Classification>
         </Seats>
     )
 }
@@ -84,7 +100,7 @@ function Seat({
     let border;
 
     const [disponivel, setDisponivel] = React.useState(available)
-    
+
     if (disponivel === false) {
         color = "#FBE192";
         border = "#F7C52B"
@@ -143,5 +159,51 @@ const Chair = styled.div`
         line-height: 13px;
         letter-spacing: 0.04em;
         color: #000000;
+    }
+`
+
+const Classification = styled.div`
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 375px;
+
+    .position{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px auto;
+    }
+
+    .position p {
+        font-family: 'Roboto';
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 15px;
+        letter-spacing: -0.013em;
+        color: #4E5A65;
+    }
+
+    .bolotinha {
+        width: 25px;
+        height: 25px;
+        border-radius: 17px;
+        margin-bottom: 5px;
+    }
+
+    .green {
+        background: #8DD7CF;
+        border: 1px solid #1AAE9E;
+    }
+
+    .gray {
+        background: #C3CFD9;
+        border: 1px solid #7B8B99;
+    }
+
+    .yellow {
+        background: #FBE192;
+        border: 1px solid #F7C52B;  
     }
 `
