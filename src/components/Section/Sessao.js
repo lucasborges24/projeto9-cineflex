@@ -56,10 +56,18 @@ function Section({
     seats
 }) {
 
+    const [selecionados, setSelecionados] = React.useState([])
+    console.log(selecionados)
     return (
         <Seats>
             {seats.map((seat, index) => {
-                return <Seat key={index} seats={seat.name} />
+                return <Seat
+                    key={index}
+                    seats={seat.name}
+                    available={seat.isAvailable}
+                    setSelecionados={setSelecionados}
+                    selecionados={selecionados}
+                />
             })}
         </Seats>
     )
@@ -67,11 +75,41 @@ function Section({
 
 function Seat({
     seats,
+    available,
+    setSelecionados,
+    selecionados
 }) {
 
-    console.log(seats)
+    let color;
+    let border;
+
+    const [disponivel, setDisponivel] = React.useState(available)
+    
+    if (disponivel === false) {
+        color = "#FBE192";
+        border = "#F7C52B"
+    } else {
+        if (disponivel === true) {
+            color = "#C3CFD9";
+            border = "#808F9D"
+        } else {
+            color = "#8DD7CF";
+            border = "#45BDB0"
+        }
+    }
+
+    function chairSelected(id) {
+        if (disponivel === false) {
+            alert('aí n meu chapa')
+        } else if (disponivel === true) {
+            setDisponivel('selecionado')
+            const selecionado = [...selecionados, id]
+            setSelecionados(selecionado)
+        }
+    }
+
     return (
-        <Chair>
+        <Chair color={color} border={border} onClick={() => chairSelected(seats)}>
             <p>{seats}</p>
         </Chair>
     )
@@ -89,13 +127,14 @@ const Seats = styled.div`
 const Chair = styled.div`
     width: 26px;
     height: 25px;
-    background: #C3CFD9;
-    border: 1px solid #808F9D;
+    background: ${props => props.color};
+    border: 1px solid ${props => props.border};
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 5px 10px 5px;
+    cursor: pointer;
 
     p {
         font-family: 'Roboto';
