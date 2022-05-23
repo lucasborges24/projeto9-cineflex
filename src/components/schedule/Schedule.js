@@ -5,7 +5,8 @@ import Loader from '../../shared/loader/Loader'
 import React from 'react'
 import axios from 'axios'
 import Footer from '../../shared/footer/Footer'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import Head from '../Head/Head'
 
 
 
@@ -13,6 +14,8 @@ export default function Schedule({
     setDadosFilme,
     dadosFilme
 }) {
+
+    const navigate = useNavigate()
     const { filmeId } = useParams()
     // const [dadosFilme, setDadosFilme] = React.useState([])
 
@@ -25,6 +28,12 @@ export default function Schedule({
     }, []);
     if (dadosFilme.length === 0) {
         return <>
+            <Head>
+                <Back>
+                    <ion-icon name="return-down-back"></ion-icon>
+                </Back>
+                <h1>CINEFLEX</h1>
+            </Head>
             <Subtitle>
                 <h2>Selecione o horário</h2>
             </Subtitle>
@@ -35,6 +44,14 @@ export default function Schedule({
 
     return (
         <>
+            <Head>
+                <Linkstyled to="/">
+                    <Back>
+                        <ion-icon name="return-down-back"></ion-icon>
+                    </Back>
+                </Linkstyled>
+                <h1>CINEFLEX</h1>
+            </Head>
             <Subtitle>
                 <h2>Selecione o horário</h2>
             </Subtitle>
@@ -134,4 +151,24 @@ const Hourinha = styled.div`
         text-decoration: none;
     }
 `
+
+const Back = styled.div`
+    width: 50px;
+    height: 50px;
+    background-color: #eff6ff;
+    border-radius: 50%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ffffed;
+    position: fixed;
+    top: 10px; left: 10%;
+    cursor: pointer;
+`
+
+const Linkstyled = styled(Link)`
+        text-decoration: none;
+`
+
+
 

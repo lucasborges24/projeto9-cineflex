@@ -1,9 +1,11 @@
 import styled from "styled-components"
 
-export default function Head() {
+export default function Head({
+    children
+}) {
     return (
         <Header>
-            <h1>CINEFLEX</h1>
+            {children}
         </Header>
     )
 }
@@ -26,4 +28,10 @@ const Header = styled.div`
         line-height: 40px;
         color: #E8833A;
     }
+
+    ion-icon {
+        font-size: 30px;
+        color: #000;
+    }
 `
+
