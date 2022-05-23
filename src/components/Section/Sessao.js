@@ -11,9 +11,18 @@ import FormsUser from '../forms/FormsUser'
 
 export default function Sessao({
     dadosfilme,
+    dadosSessao,
+    setDadosSessao,
+    selecionados,
+    setSelecionados,
+    name,
+    setName,
+    cpf,
+    setCpf,
 }) {
     const { sessaoId } = useParams()
-    const [dadosSessao, setDadosSessao] = React.useState([])
+
+
 
     React.useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${sessaoId}/seats`)
@@ -32,14 +41,27 @@ export default function Sessao({
         </>
 
     }
-    console.log(dadosSessao)
+    console.log(sessaoId)
     return (
         <>
             <Subtitle>
                 <h2>Selecione o(s) assentos </h2>
             </Subtitle>
-            <Section seats={dadosSessao.seats} />
-            <FormsUser />
+            <Section
+                seats={dadosSessao.seats}
+                selecionados={selecionados}
+                setSelecionados={setSelecionados}
+            />
+            <FormsUser
+                selecionados={selecionados}
+                setSelecionados={setSelecionados}
+                sessaoId={sessaoId}
+                dadosSessao={dadosSessao}
+                name={name}
+                setName={setName}
+                cpf={cpf}
+                setCpf={setCpf}
+            />
             <Footer>
                 <div className="background-image">
                     <img src={dadosfilme.posterURL} alt="" />
@@ -55,11 +77,12 @@ export default function Sessao({
 }
 
 function Section({
-    seats
+    seats,
+    selecionados,
+    setSelecionados
 }) {
 
-    const [selecionados, setSelecionados] = React.useState([])
-    console.log(selecionados)
+
     return (
         <Seats>
             {seats.map((seat, index) => {
@@ -69,6 +92,7 @@ function Section({
                     available={seat.isAvailable}
                     setSelecionados={setSelecionados}
                     selecionados={selecionados}
+                    seatsid={seat.id}
                 />
             })}
             <Classification>
@@ -93,9 +117,12 @@ function Seat({
     seats,
     available,
     setSelecionados,
-    selecionados
+    selecionados,
+    seatsid
 }) {
 
+
+    // console.log(seatsid)
     let color;
     let border;
 
@@ -114,18 +141,23 @@ function Seat({
         }
     }
 
-    function chairSelected(id) {
+    function chairSelected(id, seatsid) {
         if (disponivel === false) {
             alert('aí n meu chapa')
         } else if (disponivel === true) {
-            setDisponivel('selecionado')
-            const selecionado = [...selecionados, id]
+            setDisponivel(seats)
+            const selecionado = [...selecionados, seatsid]
             setSelecionados(selecionado)
+        } else if (seats === id) {
+            setDisponivel(true)
+            const selecionado = selecionados.filter(id => id !== seatsid)
+            setSelecionados(selecionado)
+            console.log(selecionados)
         }
     }
 
     return (
-        <Chair color={color} border={border} onClick={() => chairSelected(seats)}>
+        <Chair color={color} border={border} onClick={() => chairSelected(seats, seatsid)}>
             <p>{seats}</p>
         </Chair>
     )
