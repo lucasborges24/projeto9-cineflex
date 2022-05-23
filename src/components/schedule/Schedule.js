@@ -97,7 +97,6 @@ function Day({
 function Hour({
     hours,
 }) {
-    console.log(hours)
     return (
 
         <Hourinha>

@@ -23,7 +23,6 @@ export default function App() {
 
         request.then(response => {
             setItems(response.data);
-            // console.log(items)
         })
     }, []);
 

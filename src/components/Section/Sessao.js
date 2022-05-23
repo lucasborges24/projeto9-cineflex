@@ -52,7 +52,6 @@ export default function Sessao({
         </>
 
     }
-    console.log(sessaoId)
     return (
         <>
             <Head>
@@ -141,7 +140,6 @@ function Seat({
 }) {
 
 
-    // console.log(seatsid)
     let color;
     let border;
 
@@ -171,7 +169,6 @@ function Seat({
             setDisponivel(true)
             const selecionado = selecionados.filter(id => id !== seatsid)
             setSelecionados(selecionado)
-            console.log(selecionados)
         }
     }
 
