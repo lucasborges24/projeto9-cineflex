@@ -5,7 +5,7 @@ import Loader from '../../shared/loader/Loader'
 import React from 'react'
 import axios from 'axios'
 import Footer from '../../shared/footer/Footer'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import Head from '../Head/Head'
 
 
@@ -14,8 +14,8 @@ export default function Schedule({
     setDadosFilme,
     dadosFilme
 }) {
+    
 
-    const navigate = useNavigate()
     const { filmeId } = useParams()
     // const [dadosFilme, setDadosFilme] = React.useState([])
 
@@ -26,6 +26,7 @@ export default function Schedule({
             setDadosFilme({ ...response.data })
         })
     }, []);
+
     if (dadosFilme.length === 0) {
         return <>
             <Head>

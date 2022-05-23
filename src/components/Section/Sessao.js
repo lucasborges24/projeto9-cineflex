@@ -5,8 +5,9 @@ import Loader from '../../shared/loader/Loader'
 import React from 'react'
 import axios from 'axios'
 import Footer from '../../shared/footer/Footer'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import FormsUser from '../forms/FormsUser'
+import Head from '../Head/Head'
 
 
 export default function Sessao({
@@ -22,7 +23,7 @@ export default function Sessao({
 }) {
     const { sessaoId } = useParams()
 
-
+    const history = useNavigate();
 
     React.useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${sessaoId}/seats`)
@@ -32,8 +33,18 @@ export default function Sessao({
         })
     }, [])
 
+    function navigate() {
+        history(-1)
+    }
+
     if (dadosSessao.length === 0) {
         return <>
+            <Head>
+                <Back>
+                    <ion-icon name="return-down-back"></ion-icon>
+                </Back>
+                <h1>CINEFLEX</h1>
+            </Head>
             <Subtitle>
                 <h2>Selecione o(s) assentos </h2>
             </Subtitle>
@@ -44,6 +55,14 @@ export default function Sessao({
     console.log(sessaoId)
     return (
         <>
+            <Head>
+                {/* <Linkstyled to={`/filme/${sessaoId}`}> */}
+                    <Back onClick={navigate}>
+                        <ion-icon name="return-down-back"></ion-icon>
+                    </Back>
+                {/* </Linkstyled> */}
+                <h1>CINEFLEX</h1>
+            </Head>
             <Subtitle>
                 <h2>Selecione o(s) assentos </h2>
             </Subtitle>
@@ -238,4 +257,22 @@ const Classification = styled.div`
         background: #FBE192;
         border: 1px solid #F7C52B;  
     }
+`
+
+const Back = styled.div`
+    width: 50px;
+    height: 50px;
+    background-color: #eff6ff;
+    border-radius: 50%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ffffed;
+    position: fixed;
+    top: 10px; left: 10%;
+    cursor: pointer;
+`
+
+const Linkstyled = styled(Link)`
+        text-decoration: none;
 `

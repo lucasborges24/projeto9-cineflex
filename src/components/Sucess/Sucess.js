@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom';
 
 import Subtitle from "../../shared/subtitle/Subtitle"
+import Head from '../Head/Head'
 
 export default function Sucess({
     dadosSessao,
@@ -20,6 +21,17 @@ export default function Sucess({
 
     return (
         <>
+            <Head>
+                <Linkstyled to="/">
+                    <h1 style={{ cursor: "pointer" }} onClick={() => {
+                        setName("");
+                        setCpf("");
+                        setDadosFilme([]);
+                        setDadosSessao([]);
+                        setSelecionados([]);
+                    }}>CINEFLEX</h1>
+                </Linkstyled>
+            </Head>
             <Subtitle>
                 <Suces>
                     <h2>Pedido feito</h2>
@@ -34,7 +46,7 @@ export default function Sucess({
             <FinalInformation>
                 <h3>Ingresso(s)</h3>
 
-                {selecionados.map((i, index) => <p>Assento {i % 100}</p>)}
+                {selecionados.map((i, index) => <p>Assento {(i % 100 <= 50) ? i % 100 : ((i % 100) - 50)}</p>)}
             </FinalInformation>
             <FinalInformation>
                 <h3>Comprador</h3>
@@ -48,7 +60,7 @@ export default function Sucess({
                     setDadosFilme([]);
                     setDadosSessao([]);
                     setSelecionados([]);
-                    
+
                 }}>
                     Voltar pra Home
                 </Button>
@@ -118,6 +130,24 @@ const Button = styled.button`
 
 const LinkStyled = styled(Link)`
     text-decoration: none;
+`
+
+const Back = styled.div`
+    width: 50px;
+    height: 50px;
+    background-color: #eff6ff;
+    border-radius: 50%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ffffed;
+    position: fixed;
+    top: 10px; left: 10%;
+    cursor: pointer;
+`
+
+const Linkstyled = styled(Link)`
+        text-decoration: none;
 `
 
 
