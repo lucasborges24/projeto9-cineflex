@@ -269,7 +269,3 @@ const Back = styled.div`
     top: 10px; left: 10%;
     cursor: pointer;
 `
-
-const Linkstyled = styled(Link)`
-        text-decoration: none;
-`

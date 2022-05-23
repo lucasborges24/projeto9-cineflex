@@ -35,7 +35,7 @@ function Movies({
             <PosterImg>
 
                 {items.map((item, index) => {
-                    return <Link to={`/filme/${item.id}`}>
+                    return <Link to={`/filme/${item.id}`} key={index}>
                         <div className="backgroundImage">
                             <img key={index} src={item.posterURL} alt="poster-movie" />
                         </div>

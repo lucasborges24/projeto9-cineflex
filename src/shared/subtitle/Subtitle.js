@@ -4,13 +4,13 @@ export default function Subtitle ({
     children
 }) {
     return (
-        <Sub_title>
+        <Subtitlestyled>
             {children}
-        </Sub_title>
+        </Subtitlestyled>
     )
 }
 
-const Sub_title = styled.div`
+const Subtitlestyled = styled.div`
     width: 375px;
     font-family: 'Roboto', sans-serif;
     display: flex;

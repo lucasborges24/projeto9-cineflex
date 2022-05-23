@@ -132,20 +132,6 @@ const LinkStyled = styled(Link)`
     text-decoration: none;
 `
 
-const Back = styled.div`
-    width: 50px;
-    height: 50px;
-    background-color: #eff6ff;
-    border-radius: 50%;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ffffed;
-    position: fixed;
-    top: 10px; left: 10%;
-    cursor: pointer;
-`
-
 const Linkstyled = styled(Link)`
         text-decoration: none;
 `
